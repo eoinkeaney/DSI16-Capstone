@@ -12,7 +12,7 @@ I ran into some difficulties when dealing with such a large number of data poin
 ### Data collection
 
 After deciding on Reddit as my focus I researched the Reddit API tools and found that even though they are very comprehensive they were not exactly precise enough when dealing with historical data.
-The two objects I was pulling from Reddit was Submissions ('the original image / link / text that a user posts to the subreddit) and Comments (the user replies that branch out from each Submission)
+The two objects I was pulling from Reddit were Submissions (the original image / link / text that a user posts to the subreddit) and Comments (the user replies that branch out from each Submission).
 Each Submission and each of the child Comments have a unique ID.
 
 ![pasted image 0 (1)](https://user-images.githubusercontent.com/20221706/119270912-fd3e4e80-bbf6-11eb-82c6-4ffec85fcf33.png)
@@ -21,17 +21,17 @@ Using the Reddit API and its PRAW (Python Reddit API Wrapper) library I was able
 
 I found an internet archiving project called pushshift.io that was storing Reddit posts on a third party site, using their API tools I was able to query the unique submission ID on a subreddit between two dates.
 
-With this information I was able to write a script with two loops, the first loop gets all  the submissions in our target Subreddit between a start date and end date from pushshift.io . Once I have my list of id's I can then loop through them and pull the submission data plus all child comments via the PRAW library and output the data to a local CSV file.
+With this information I was able to write a script with two loops, the first loop gets all  the submissions in our target Subreddit between a start date and end date from pushshift.io. Once I had my list of id's I could loop through them and pull the submission data plus all child comments via the PRAW library and output the data to a local CSV file.
 
 ![wordcloud](https://user-images.githubusercontent.com/20221706/119270964-3971af00-bbf7-11eb-9942-6b8aff5c4120.png)
 
 
 ### Data wrangling
 
-The most difficult part of this project ways of mapping the raw data and finding if any value that could be predicted.
+The most difficult part of this project was finding an efficient way of mapping the raw data and finding if there was any value that could be predicted.
 
 I wanted to start my focus on NLP and developed a test that would compare different processes and see if any had a more predictive quality.
-In Reddit every comment has a scores depending on how many users up vote it. However when I look at all my comments I scrapped, it was not evenly distributed.
+In Reddit every comment has a score depending on how many users upvote it. However when I look at all my comments I scrapped, it was not evenly distributed.
 
 ![Score_hist](https://user-images.githubusercontent.com/20221706/119270941-1d6e0d80-bbf7-11eb-9e1d-0a667ffefe9a.png)
 
@@ -48,8 +48,8 @@ As suspected there was no strong correlation between the sentiment scores and Re
 
 ![NLP Heatmap](https://user-images.githubusercontent.com/20221706/119270986-57d7aa80-bbf7-11eb-8091-ac4d5576d8ff.png)
 
-When we ran some predictive models we did not get any score that would be benefit in a production setting.
-Some of the models we used include LinearRegression, DecisionTreeRegressor, RandomForestRegressor and MLPRegressor (neural network). However we never got above a train/test score above 0.3/0.2 which is not actonable.
+When I ran some predictive models I didn't get any score that would be beneficial in a production setting.
+Some of the models we used include LinearRegression, DecisionTreeRegressor, RandomForestRegressor and MLPRegressor (neural network). However we never got above a train/test score above 0.3/0.2 which is not actionable.
 
 ![coef](https://user-images.githubusercontent.com/20221706/119271005-6c1ba780-bbf7-11eb-8f20-9fad008d4d88.png)
 
@@ -62,5 +62,5 @@ Moving away from NLP we also wanted to map the relationship between users on the
 
 ### Conclusion
 
-NLP techniques can be a very useful tools for adding more features to your data set however to get the most from it you need a clear definition of your goals and a high domain knowledge of your sources. The NLP techniques I learned can be a good starting point for analysing a collection of text data but there needs to be some structure already set in the data collection or stringent rules during the data wrangling stages to get the most out of it.
+NLP techniques are a very useful collection of tools that add more features to your data set, however to get the most from it you need a clear definition of your goals and a high domain knowledge of your sources. The NLP techniques I learned can be a good starting point for analysing a collection of text data but there needs to be some structure already set in the data collection or stringent rules during the data wrangling stages to get the most out of it.
 
